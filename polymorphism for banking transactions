@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+class BankTransaction {
+public:
+    virtual void performTransaction() {
+        cout << "Performing a general bank transaction.\n";
+    }
+};
+
+class Deposit : public BankTransaction {
+public:
+    void performTransaction() override {
+        cout << "Performing a deposit transaction.\n";
+    }
+};
+
+class Withdrawal : public BankTransaction {
+public:
+    void performTransaction() override {\
+        cout << "Performing a withdrawal transaction.\n";
+    }
+};
+
+class BalanceInquiry : public BankTransaction {
+public:
+    void performTransaction() override {
+        cout << "Performing a balance inquiry.\n";
+    }
+};
+
+int main() {
+    BankTransaction* transaction;
+
+    Deposit deposit;
+    transaction = &deposit;
+    transaction->performTransaction();
+
+    Withdrawal withdrawal;
+    transaction = &withdrawal;
+    transaction->performTransaction();
+
+    BalanceInquiry balanceInquiry;
+    transaction = &balanceInquiry;
+    transaction->performTransaction();
+
+    return 0;
+}
